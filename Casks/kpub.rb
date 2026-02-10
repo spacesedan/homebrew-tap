@@ -3,37 +3,42 @@ cask "kpub" do
   name "kpub"
   desc "Telegram chat monitor and ebook pipeline for Kobo"
   homepage "https://github.com/spacesedan/kpub"
-  version "0.1.4"
+  version "0.0.1"
 
   livecheck do
     skip "Auto-generated on release."
   end
 
   binary "kpub"
-  depends_on formula: [
-      "docker",
-    ]
 
   on_macos do
     on_intel do
       url "https://github.com/spacesedan/kpub/releases/download/v#{version}/kpub_darwin_amd64.tar.gz"
-      sha256 "51a3b967c9d3c4d8d469f81621a810b3388c6b09c02e0d2aa0ff0d1121aac2ac"
+      sha256 "512d4fa5224c93c44bbd1bfb530fa194f39e4066b022f3a01730bae7185f98b0"
     end
     on_arm do
       url "https://github.com/spacesedan/kpub/releases/download/v#{version}/kpub_darwin_arm64.tar.gz"
-      sha256 "7b0b5086f3fad0a8785a986c8990f64f41169d605b8bb9a3e7b9c2b66a2539db"
+      sha256 "62f43eaa284f110276aacac1ce2dd618a39c7210a7dd2427f148b6e13a440103"
     end
   end
 
   on_linux do
     on_intel do
       url "https://github.com/spacesedan/kpub/releases/download/v#{version}/kpub_linux_amd64.tar.gz"
-      sha256 "1ff6047c31aaf3774bd525872e3462be941bc849c0a1c851c307b2791a12450e"
+      sha256 "84c2d4d64eace002f505cb3ed2954f61180d4beec5859bdde2fc9f9373c3bcd2"
     end
     on_arm do
       url "https://github.com/spacesedan/kpub/releases/download/v#{version}/kpub_linux_arm64.tar.gz"
-      sha256 "7e73b6d65f9114ffdaec6e602dc4967686fbb574f74eb3084af692832108eede"
+      sha256 "95e93d69850b99e6d1ab469003d0621fec7714dddb973172116aec56d227dbbf"
     end
+  end
+
+  postflight do
+    system_command "/usr/bin/xattr", args: ["-dr", "com.apple.quarantine", "#{staged_path}/kpub"]
+  end
+
+  caveats do
+    "Run 'kpub setup' to configure Telegram and Dropbox credentials."
   end
 
   # No zap stanza required
