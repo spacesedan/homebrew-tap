@@ -1,8 +1,8 @@
 class Kpub < Formula
   desc "Telegram chat monitor and ebook pipeline for Kobo"
   homepage "https://github.com/spacesedan/kpub"
-  url "https://github.com/spacesedan/kpub/archive/refs/tags/v0.1.9.tar.gz"
-  sha256 "8aca22e4580983a1d57fd2c322b43562e99015cf2980b43a3e8e1d6ac7b7a2ef"
+  url "https://github.com/spacesedan/kpub/archive/refs/tags/v0.1.10.tar.gz"
+  sha256 "4b8ff54d14705663035c1ecc3a9d53331b76de80be9eda55c06e41c15a1ffa11"
   license "MIT"
 
   depends_on "go" => :build
